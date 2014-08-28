@@ -11,7 +11,7 @@ def repeat(s, exclaim):
 
 
 def main():
-	print repeat('Yay', False)
+	print repeat('Happy', False)
 	print repeat('Woo Hoo',True)
 
 if __name__ == '__main__':
