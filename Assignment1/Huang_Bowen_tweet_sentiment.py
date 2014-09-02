@@ -22,12 +22,19 @@ def main():
     for line in tweet_file:
         #newstring = line.encode('utf-8').translate(None, string.punctuation)
         num_sum=0
-        decode=json.dumps(line)
+        #json-->dictionary
+        decode=json.loads(line)
         #print decode
         #dict ergodic
-        for k,v in scores.items():
-            if decode.find(k)>-1:
-                num_sum+=v
+        # print v
+        for key,val in scores.items():#words_file
+            for k,v in decode.items():#twitter_file
+                v_word=str(v).split(' ')#split sentence into words
+                # print v_word
+                for word in v_word:    
+                    str_exist=str(word).find(key)#whether words in twitter_file contains any words
+                    if str_exist>-1:
+                        num_sum+=int(val)
         print num_sum
 
 
