@@ -25,11 +25,15 @@ def reducer(key,list_of_value):
 	b_elm=[]
 	#the value of (i,k) in the solution of A(i,j)*B(j,k)
 	total=0
+	#the structure of the element in list_of_value:(matrix,row or column,val)
+	#make the value lists for matrix A and B separately
 	for v in list_of_value:
+		#decide whether matrix is a
 		if v[0]=="a":
 			a_elm.append((v[1],v[2]))
 		elif v[0]=="b":
 			b_elm.append((v[1],v[2]))
+	#matrix multiplication
 	for a in a_elm:
 		for b in b_elm:
 			if a[0]==b[0]:
