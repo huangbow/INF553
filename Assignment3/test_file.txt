@@ -1,0 +1,11 @@
+Kluver	3.5	Pirates of the Caribbean: The Curse of the Black Pearl
+Kluver	4.0	Finding Nemo
+Kluver	4.5	The Dark Knight
+Kluver	4.5	Batman Begins
+Kluver	4.0	The Incredibles
+Kluver	3.5	Men in Black
+Kluver	4.0	Minority Report
+Kluver	4.0	The Lord of the Rings: The Return of the King
+Kluver	4.0	Back to the Future
+Kluver	4.0	The Lord of the Rings: The Two Towers
+Kluver	2.5	Star Wars: Episode II - Attack of the Clones
