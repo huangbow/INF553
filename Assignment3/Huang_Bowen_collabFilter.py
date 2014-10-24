@@ -18,16 +18,16 @@ def main():
     ratings_file = open(sys.argv[1])
     user1 = str(sys.argv[2])
     user2 = str(sys.argv[3])
-    # item = str(sys.argv[4])
-    # k = int(sys.argv[5])
+    item = str(sys.argv[4])
+    k = int(sys.argv[5])
 
 
     ratings = readRatings(ratings_file)
     print "readRatings output", ratings
     sim = similarity(ratings[user1], ratings[user2])
     print "sim = ", sim
-    # nearest = nearestNeighbors(user1, ratings, k)
-    # print "nearestNeighbors: ", nearest
+    nearest = nearestNeighbors(user1, ratings, k)
+    print "nearestNeighbors: ", nearest
     # prediction = predict(item, nearest, ratings)
     # print "prediction for item", item, ": ", prediction
 
@@ -48,6 +48,7 @@ def similarity(user_ratings_1, user_ratings_2):
 
     # Write code to implement the Pearson correlation equation
     # Return the similarity of user 1 and user 2 based on tehir ratings
+    sim_count=0
     delta=[]
     a_delta2=[]
     b_delta2=[]
@@ -55,19 +56,21 @@ def similarity(user_ratings_1, user_ratings_2):
     num_down=0
     avg_user_1=avg(user_ratings_1)
     avg_user_2=avg(user_ratings_2)
-    print avg_user_1
-    print avg_user_2
     #get the delta in the same items these two users rated
     for key in user_ratings_1:
         for k in user_ratings_2:
             if key==k:
-                print key
+                sim_count+=1
                 temp1=user_ratings_1.get(key)-avg_user_1
                 temp2=user_ratings_2.get(key)-avg_user_2
                 delta.append((temp1,temp2))
                 a_delta2.append(temp1**2)
                 b_delta2.append(temp2**2)
-    print delta,"d"
+    #if no co-items
+    if sim_count==0:
+        return 0.0
+
+
     for v in delta:
         num_up+=v[0]*v[1]
     a_down=0
@@ -77,7 +80,6 @@ def similarity(user_ratings_1, user_ratings_2):
     for v in b_delta2:
         b_down+=v
     num_down=a_down*b_down
-    print num_up,num_down
 
     similarity=num_up/(math.sqrt(num_down))
     return similarity
@@ -86,6 +88,11 @@ def similarity(user_ratings_1, user_ratings_2):
 def nearestNeighbors(user_id, all_user_ratings, k):
 
     # Write code to determine the k nearest neighbors for user_id
+    nearest=[]
+    for key in all_user_ratings:
+        if key!=user_id:
+            nearest.append((key,similarity(ratings[user_id],ratings[key])))
+    nearest=sorted(nearest,key=lambda x:(x[1],x[0]),reverse=True)
 
     return nearest[0:k]
 
