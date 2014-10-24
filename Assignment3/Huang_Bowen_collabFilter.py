@@ -31,12 +31,11 @@ def readRatings(ratings_file):
     # b.setdefault(key, [])
     for line in ratings_file:
         v=line.split("\t")
-        ratings[v[0]]={}
-        #     print "OK!!!!!"
-        # print type(ratings[v[0]])
+        ratings.setdefault(v[0],{})
         # b[v[2]]=v[1]
-        ratings[v[0]][v[2]].append(v[1])
+        ratings[v[0]][v[2]]=v[1]
 
+    # print b
     return ratings
 
     

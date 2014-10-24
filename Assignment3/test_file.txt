@@ -9,3 +9,10 @@ Kluver	4.0	The Lord of the Rings: The Return of the King
 Kluver	4.0	Back to the Future
 Kluver	4.0	The Lord of the Rings: The Two Towers
 Kluver	2.5	Star Wars: Episode II - Attack of the Clones
+k279	4.0	Beauty and the Beast
+k279	5.0	The Dark Knight
+k279	5.0	The Lord of the Rings: The Return of the King
+k279	5.0	Forrest Gump
+k279	4.0	Clear and Present Danger
+k279	3.5	Jurassic Park
+k279	4.0	Star Wars: Episode VI - Return of the Jedi
