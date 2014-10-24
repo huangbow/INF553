@@ -5,19 +5,28 @@ import math
 
 ratings = {} # initialize an empty ratings dictionary
 
+def avg(value_dic):
+    num=len(value_dic)
+    total=0
+    for k in value_dic:
+        total+=value_dic.get(k)
+
+    return total/num
+
+
 def main():
 
     ratings_file = open(sys.argv[1])
-    # user1 = str(sys.argv[2])
-    # user2 = str(sys.argv[3])
+    user1 = str(sys.argv[2])
+    user2 = str(sys.argv[3])
     # item = str(sys.argv[4])
     # k = int(sys.argv[5])
 
 
     ratings = readRatings(ratings_file)
     print "readRatings output", ratings
-    # sim = similarity(ratings[user1], ratings[user2])
-    # print "sim = ", sim
+    sim = similarity(ratings[user1], ratings[user2])
+    print "sim = ", sim
     # nearest = nearestNeighbors(user1, ratings, k)
     # print "nearestNeighbors: ", nearest
     # prediction = predict(item, nearest, ratings)
@@ -30,8 +39,8 @@ def readRatings(ratings_file):
     for line in ratings_file:
         v=line.split("\t")
         #initiate sub-dictionary
-        ratings.setdefault(v[0],{})
-        ratings[v[0]][v[2]]=v[1]
+        ratings.setdefault(str(v[0]),{})
+        ratings[str(v[0])][str(v[2])]=float(v[1])
 
     return ratings
 
@@ -40,7 +49,12 @@ def similarity(user_ratings_1, user_ratings_2):
 
     # Write code to implement the Pearson correlation equation
     # Return the similarity of user 1 and user 2 based on tehir ratings
-    
+    print user_ratings_1
+    avg_user_1=avg(user_ratings_1)
+    avg_user_2=avg(user_ratings_2)
+    print avg_user_2
+
+    similarity=0
     return similarity
 
 
