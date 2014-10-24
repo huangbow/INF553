@@ -10,7 +10,6 @@ def avg(value_dic):
     total=0
     for k in value_dic:
         total+=value_dic.get(k)
-
     return total/num
 
 
@@ -49,12 +48,38 @@ def similarity(user_ratings_1, user_ratings_2):
 
     # Write code to implement the Pearson correlation equation
     # Return the similarity of user 1 and user 2 based on tehir ratings
-    print user_ratings_1
+    delta=[]
+    a_delta2=[]
+    b_delta2=[]
+    num_up=0
+    num_down=0
     avg_user_1=avg(user_ratings_1)
     avg_user_2=avg(user_ratings_2)
+    print avg_user_1
     print avg_user_2
+    #get the delta in the same items these two users rated
+    for key in user_ratings_1:
+        for k in user_ratings_2:
+            if key==k:
+                print key
+                temp1=user_ratings_1.get(key)-avg_user_1
+                temp2=user_ratings_2.get(key)-avg_user_2
+                delta.append((temp1,temp2))
+                a_delta2.append(temp1**2)
+                b_delta2.append(temp2**2)
+    print delta,"d"
+    for v in delta:
+        num_up+=v[0]*v[1]
+    a_down=0
+    b_down=0
+    for v in a_delta2:
+        a_down+=v
+    for v in b_delta2:
+        b_down+=v
+    num_down=a_down*b_down
+    print num_up,num_down
 
-    similarity=0
+    similarity=num_up/(math.sqrt(num_down))
     return similarity
 
 
