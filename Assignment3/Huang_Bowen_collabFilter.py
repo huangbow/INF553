@@ -103,16 +103,16 @@ def predict(item, k_nearest_neighbors, all_user_ratings):
     total_sim=0
     total_up=0
     k_nearest_neighbors_temp=k_nearest_neighbors
-    for user in k_nearest_neighbors:#user[0]: user, user[1]: sim
-        if all_user_ratings[user[0]].get(item+'\n')==None:
-            temp=k_nearest_neighbors.index(user)
-            # print temp
-            del k_nearest_neighbors[temp]
-            # else:    
-            #     total_sim+=user[1] #sum the similarities
+    # for user in k_nearest_neighbors:#user[0]: user, user[1]: sim
+    #     if all_user_ratings[user[0]].get(item+'\n')==None:
+    #         temp=k_nearest_neighbors.index(user)
+    #         # print temp
+    #         del k_nearest_neighbors[temp]
+    #         # else:    
+    #         #     total_sim+=user[1] #sum the similarities
     for u in k_nearest_neighbors:
-        total_sim+=u[1]
         if all_user_ratings[u[0]].get(item+'\n')!=None:
+            total_sim+=u[1]
             total_up+=u[1]*all_user_ratings[u[0]].get(item+'\n')
         print all_user_ratings[u[0]].get(item+'\n')
 
