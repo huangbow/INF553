@@ -27,15 +27,12 @@ def main():
 def readRatings(ratings_file):
     
     # Write code to read ratings file and construct dictionary of dictionaries
-    b={}
-    # b.setdefault(key, [])
     for line in ratings_file:
         v=line.split("\t")
+        #initiate sub-dictionary
         ratings.setdefault(v[0],{})
-        # b[v[2]]=v[1]
         ratings[v[0]][v[2]]=v[1]
 
-    # print b
     return ratings
 
     
