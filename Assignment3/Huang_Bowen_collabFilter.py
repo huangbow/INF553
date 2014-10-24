@@ -104,6 +104,7 @@ def predict(item, k_nearest_neighbors, all_user_ratings):
     total_up=0
     k_nearest_neighbors_temp=k_nearest_neighbors
     for u in k_nearest_neighbors:
+        #just find those which share the same items
         if all_user_ratings[u[0]].get(item+'\n')!=None:
             total_sim+=u[1]
             total_up+=u[1]*all_user_ratings[u[0]].get(item+'\n')
