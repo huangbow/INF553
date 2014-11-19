@@ -1,0 +1,9 @@
+frequent itemsets of size 1:
+bread-3
+beer-4
+egg-4
+coke-3
+dress-3
+shoes-3
+frequent itemsets of size 2:
+dress,shoes-3

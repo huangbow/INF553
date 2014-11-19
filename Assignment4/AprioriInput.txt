@@ -1,0 +1,6 @@
+beer,dress,shoes,egg,coke
+beer,bread,diapers,egg,coke,bread
+egg,shoes,beer,dress,milk
+milk,egg,bread
+shoes,dress,coke,diapers
+beer
