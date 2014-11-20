@@ -60,15 +60,20 @@ def pass2(support):
 		if int(paircount.get(k))-int(support)>=0:
 			print k,paircount[k]
 
-
+def passk(data,support):
+	pass1(data,support)
+	pass2(support)
+	for key in paircount:
+		
 
 
 
 def main():
 	data=open(sys.argv[1])
 	support=sys.argv[2]
-	pass1(data,support)
-	pass2(support)
+	# pass1(data,support)
+	# pass2(support)
+
 
 
 if __name__ == '__main__':
