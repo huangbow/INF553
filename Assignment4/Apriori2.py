@@ -37,10 +37,6 @@ def pass1(data,support):
 		#get Lexicographic ordering 
 	countSupport(items)
 	deleNonFreqItem(supportDic,support)
-	
-	# print "frequent itemsets of size 1:"
-	# for k in intermediateDicForPass1:
-	# 	print k,intermediateDicForPass1[k]
 
 def Apriori(data,support):
 	size=1
@@ -59,20 +55,20 @@ def Apriori(data,support):
 		print len(intermediateSetForPass[size-2])
 		a=[]
 		candiSet=set()
-		for key in supportDic:
+		for key in intermediateDicForPass[0]:
 			a.append(key)
 		temp_candi=set(itertools.combinations(a, size))
-		# candiSet=temp_candi
-		if size==4:
-			print temp_candi,"candi"
-		for candi in temp_candi:
-			for s in intermediateSetForPass[size-2]:
-				if size==4:
-					print set(s).issubset(set(candi))
-				if set(s).issubset(set(candi))==False:
-					candiSet.add(candi)
-		if size==4:
-			print candiSet
+		candiSet=temp_candi
+
+		# for candi in temp_candi.copy():
+		# 	for s in intermediateSetForPass[size-2]:
+		# 		if (s in set(candi))==False:
+		# 			if size==2:
+		# 				print (s in set(candi))
+		# 				print s,set(candi),"dif"
+		# 			candiSet.discard(candi)
+		candiSet=temp_candi
+
 		temp_dicForPassK={}
 		intermediateDicForPassK={}
 		intermediateSetForPassK=set()
@@ -94,54 +90,13 @@ def Apriori(data,support):
 		
 	#--------------------while END-------------------------------------------
 
-	# print intermediateDicForPass
-	
-		
-
-
-def pass2(support):
-	#generate pairs
-	a=[]
-	for key in supportDic:
-		a.append(key)
-	temp_pair=set(itertools.combinations(a, 2))
-	# generate pair if freq size 1 contain the subset
-	for p in temp_pair:
-		if set(p).issubset(intermediateSetForPass[0])==True:
-			pair.add(p)
-
-	intermediateDicForPass2={}
-	for k in pair:
-		for setForEachRow in items:
-			if set(k).issubset(setForEachRow):
-				if intermediateDicForPass2.get(k)==None:
-					intermediateDicForPass2[k]=1
-				else:
-					intermediateDicForPass2[k]+=1
-	for key in intermediateDicForPass2:
-		if int(intermediateDicForPass2[key]-int(support))>=0:
-			print key,intermediateDicForPass2[key]
-
-def passk(data,support):
-	pass1(data,support)
-	pass2(support)
-	a=[]
-	b=[]
-	# for key in intermediateDicForPass1:
-	# 	a.append(key)
-		# test=test.union(set([key]))
-	# for i in test:
-	# 	print i
-	# print list(itertools.combinations(a, 3))
-
+	print intermediateDicForPass
 
 
 def main():
 	data=open(sys.argv[1])
 	support=sys.argv[2]
-	# pass1(data,support)
-	# pass2(support)
-	# passk(data,support)
+
 	Apriori(data,support)
 
 
