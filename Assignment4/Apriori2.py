@@ -43,6 +43,7 @@ def pass1(data,support):
 	# 	print k,intermediateDicForPass1[k]
 
 def Apriori(data,support):
+	size=1
 	for line in data:
 		#del '\n';split by ','
 		#set items to by 2D list
@@ -53,38 +54,6 @@ def Apriori(data,support):
 	deleNonFreqItem(supportDic,support)
 
 
-
-	size=1
-	# #pass2
-	# #generate pairs
-	# a=[]
-	# for key in supportDic:
-	# 	a.append(key)
-	# temp_pair=set(itertools.combinations(a, 2))
-
-	# # generate pair if freq size 1 contain the subset
-	# for p in temp_pair:
-	# 	if set(p).issubset(intermediateSetForPass[0])==True:
-	# 		pair.add(p)
-
-	# intermediateDicForPass2={}
-	# temp_dicForPass2={}
-	# intermediateSetForPass2=set()
-	# for key in pair:
-	# 	for setForEachRow in items:
-	# 		if set(key).issubset(setForEachRow):
-	# 			if temp_dicForPass2.get(key)==None:
-	# 				temp_dicForPass2[key]=1
-	# 			else:
-	# 				temp_dicForPass2[key]+=1
-	# for key in temp_dicForPass2:
-	# 	if int(temp_dicForPass2[key]-int(support))>=0:
-	# 		intermediateDicForPass2[key]=temp_dicForPass2[key]
-	# 		intermediateSetForPass2.add(key)
-	# intermediateDicForPass.append(intermediateDicForPass2)
-	# intermediateSetForPass.append(intermediateSetForPass2)
-	# # print intermediateDicForPass,intermediateSetForPass
-
 	size=size+1
 	while(len(intermediateSetForPass[size-2])>=size):
 		print len(intermediateSetForPass[size-2])
@@ -93,12 +62,17 @@ def Apriori(data,support):
 		for key in supportDic:
 			a.append(key)
 		temp_candi=set(itertools.combinations(a, size))
-
+		# candiSet=temp_candi
+		if size==4:
+			print temp_candi,"candi"
 		for candi in temp_candi:
 			for s in intermediateSetForPass[size-2]:
+				if size==4:
+					print set(s).issubset(set(candi))
 				if set(s).issubset(set(candi))==False:
 					candiSet.add(candi)
-		
+		if size==4:
+			print candiSet
 		temp_dicForPassK={}
 		intermediateDicForPassK={}
 		intermediateSetForPassK=set()
@@ -117,7 +91,7 @@ def Apriori(data,support):
 		intermediateSetForPass.append(intermediateSetForPassK)
 		size+=1
 		
-		print intermediateDicForPassK
+		
 	#--------------------while END-------------------------------------------
 
 	# print intermediateDicForPass
